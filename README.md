@@ -62,16 +62,15 @@
 -   Get the item
 -   Paginate on the version controlled items
 
-### Send Emails REST
--   Check that the item is signed by the private key
-
 ### Highlights
 -   Free
 -   Decentralized <3 IPFS
 -   No Smart contracts
--   Written completely in JS/TS
+-   Fully Transparent
 
 ## Plus
+-   notify users in profile
+-   notify users using email
 -   Sign the email request with the private key
 -   Add Public Profile for Org
 -   A smart contact to approve the user 

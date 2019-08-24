@@ -1,16 +1,37 @@
-const id = 'https://www.npmjs.com/package/uuid'
-const archiveId = `badge-${id}-version1.0`
-const description = ''
-const object = {id,description,updates:[archiveId],version:1.0,created:Date.now()}
 
-const profile = await Box.getProfile(<ethereum-address>)
-const badges = profile.badges || []
-profile.public.set('badges',badges.push(id))
 
-// Open space for writing
-const myAppSpace = await box.openSpace('vCertificateBadge')
+export  const defineBadge = async(address,name,description,photo)=>{
+    const uuid = require('uuid/v4');
+    const Box = require('3box')
 
-// Update public space data
-await myAppSpace.public.set(id, JSON.stringify(description))
-await myAppSpace.public.set(archiveId, JSON.stringify(description))
+    const id =  uuid();
+    const object = {
+        description,
+        name,
+        photo,
+        version:1.0,
+        orgId:address,
+        created:Date.now(),
+        updates:[`${id}_v1.0`]
 
+    }
+
+
+    const myAppSpace = await Box.openSpace(`${address}_badges`)
+
+    await myAppSpace.public.set(id, JSON.stringify(object))
+    await myAppSpace.public.set(object.updates[0], JSON.stringify(object))
+
+    return {id , object}
+
+}
+
+export const addBadgeToProfile = async(address,id) =>{
+
+    const Box = require('3box')
+
+    const profile = await Box.getProfile(address)
+    const badges = profile.badges || []
+    profile.public.set('badges',badges.push(id))
+
+} 

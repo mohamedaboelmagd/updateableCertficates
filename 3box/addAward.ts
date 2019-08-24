@@ -1,24 +1,42 @@
-const id = 'https://www.npmjs.com/package/uuid'
-const archiveId = `award-${id}-version1.0`
-const description = ''
-const name = ''
-const badgeId = ''
-const object = {id,name,description,badgeId,updates:[archiveId],version:1.0,created:Date.now()}
 
-// Open space for writing
-const myAppSpace = await box.openSpace('vCertificateAwards')
+export const defineAwards = async(address:string,badgeId, awards:{name,note}[]) =>{
 
-// Update public space data
-await myAppSpace.public.set(id, JSON.stringify(description))
-await myAppSpace.public.set(archiveId, JSON.stringify(description))
+    
+    const uuid = require('uuid/v4');
+    const Box = require('3box')
 
-// Update the badge also
-const latestBadge = await box.public.get(`id`)
-latestBadge.awards.push(awards)
+    const awardKeys = []
+    const awardObjects = []
+    const awardArchiveKeys = []
+    const awardArchiveObjects = []
 
-// Open space for writing
-const myAppSpace = await box.openSpace('vCertificateAwards')
+for(const item of awards){
 
-// Update public space data
-await myAppSpace.public.set(id, JSON.stringify({...latestBadge}))
+    const id =  uuid();
+    const object = {
+        name:item.name,
+        note:item.note || '',
+        badgeId,
+        version:1.0,
+        created:Date.now(),
+        updates:[`${id}_v1.0`]
+    }
+
+   awardKeys.push(id)
+   awardObjects.push(JSON.stringify(object))
+   awardArchiveKeys.push(object.updates[0])
+   awardArchiveObjects.push(JSON.stringify(object))
+    
+}
+
+ 
+
+    const myAppSpace = await Box.openSpace(`${address}_awards`)
+    await myAppSpace.public.set(awardKeys, JSON.stringify(awardObjects))
+    await myAppSpace.public.set(awardArchiveKeys, JSON.stringify(awardArchiveObjects))
+
+    const badgesSpace =  await Box.openSpace(`${address}_badges`)
+    const badge = await badgesSpace.public.get(badgeId)
+    await badgesSpace.public.set(badgeId,{...badge , awards:badge.awards.push(...awardKeys)})
+}
 
