@@ -1,5 +1,16 @@
-
-export const addAwards = async(address:string,badgeId, awards:{name,note}[]) =>{
+/**
+ * Used to create new award for the student
+ * create the award object with uuid v4
+ * set the item to ${address}_awards twice 
+ * one under the uuid which will be the pointer for the latest version
+ * the other is for versioning which by default is set to 1.0
+ * 
+ *
+ * @param {string} address
+ * @param {*} badgeId
+ * @param {{name,note}[]} awards
+ */
+const addAwards = async(address:string,badgeId, awards:{name,note}[]) =>{
 
     
     const uuid = require('uuid/v4');
@@ -32,8 +43,8 @@ for(const item of awards){
  
 
     const awardsSpace = await Box.openSpace(`${address}_awards`)
-    await awardsSpace.public.setMultiple(awardKeys, JSON.stringify(awardObjects))
-    await awardsSpace.public.setMultiple(awardArchiveKeys, JSON.stringify(awardArchiveObjects))
+    await awardsSpace.public.setMultiple(awardKeys, awardObjects)
+    await awardsSpace.public.setMultiple(awardArchiveKeys, awardArchiveObjects)
 
     const badgesSpace =  await Box.openSpace(`${address}_badges`)
     const badge = await badgesSpace.public.get(badgeId)
