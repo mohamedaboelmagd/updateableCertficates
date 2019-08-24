@@ -15,4 +15,5 @@ export interface ISmtpRequestItems {
 
 export interface ISmtpRequest {
     request:string // JSON.stringify(ISmtpRequestItems)
+    signed:string
 }
