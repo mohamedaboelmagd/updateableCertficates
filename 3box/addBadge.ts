@@ -17,10 +17,9 @@ export  const defineBadge = async(address,name,description,photo)=>{
     }
 
 
-    const myAppSpace = await Box.openSpace(`${address}_badges`)
-
-    await myAppSpace.public.set(id, JSON.stringify(object))
-    await myAppSpace.public.set(object.updates[0], JSON.stringify(object))
+    const badgesSpace = await Box.openSpace(`${address}_badges`)
+    await badgesSpace.public.set(id, JSON.stringify(object))
+    await badgesSpace.public.set(object.updates[0], JSON.stringify(object))
 
     return {id , object}
 

@@ -1,13 +1,14 @@
-const latest = await box.public.get(`id`)
-// latest.name && latest.description  THE UPDATE
-latest.version = latest.version + 0.10
-latest.updates.unshift( // replace the version number)
-latest.updated = Date.now()
+export const editBadge = async (address: string, id: string) => {
+  const Box = require("3box"); 
+  // A line that defines the space as `${address}_badges` maybe needed
+  const latest = await box.public.get(id);
+  latest.version = latest.version + 0.1;
+  latest.updates.unshift(`${id}_v${latest.version}`);
+  latest.updated = Date.now();
 
-// Open space for writing
-const myAppSpace = await box.openSpace('vCertificateAwards')
+  const badgesSpace = await Box.openSpace(`${address}_badges`);
 
-// Update public space data
-await myAppSpace.public.set(id, JSON.stringify(description))
-await myAppSpace.public.set(latest.updates[0], JSON.stringify(description))
-
+  // Update public space data
+  await badgesSpace.public.set(id, JSON.stringify(latest));
+  await badgesSpace.public.set(latest.updates[0], JSON.stringify(latest));
+};
