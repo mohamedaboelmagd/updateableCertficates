@@ -1,5 +1,5 @@
 # Updatable Certificates
-> Our objective to do a bear minimum implantation that allows the certificates and its awards to be updated similar to how commits work in git.
+> Our objective to do a bear minimum implantation that allows the certificates and its awards to be updated and versioned.
 
 ## Technology
 - Metamask
@@ -21,10 +21,53 @@
 -   Add award
 -   Edit award
 
-## Data Objects
--   Certificate object
--   Award archive
+## User Scenario
+- if org not logged in on metamask and 3box space => org setup metamask
+- org opens => they go their page => create a new badge
+- org opens => they go their page => they expand a badge => edit the badge
+- org opens => they go their page => they expand a badge => award badge by csv
+- org opens => they go their page => they expand a badge => edit award
+
+## Data Models
+-   Badge 
+-   Award
+
+## Main functions
+
+### Add MetaMask
+- https://docs.3box.io/build/web-apps/auth/3box
+
+### Add Function explained
+
+
+-   Item version is set to 1.0 , versions array only includes one item
+-   Item id is uuidv4 , contact badge- in the begenaing and -version in -   The end with the number
+-   Set item in archive 
+-   Set uuid4 => item
+
+### Edit Function explained
+
+-   Get item 
+-   Increment the version number by 0.10 
+-   Unshift the versions array to make the latest item the first
+-   Set the item in archive 
+-   Set item by uuid
+
+### Get
+-   Get the item
+-   Paginate on the version controlled items
+
+### Send Emails REST
+-   Check that the item is signed by the public key
+
+### Highlights
+-   Free
+-   Decentralized <3 IPFS
+-   No Smart contracts
+-   Written completely in JS/TS
+
 ## Plus
+-   Sign the email request with the private key
 -   Add Public Profile for Org
 -   A smart contact to approve the user 
 -   Support for private awards / badges
