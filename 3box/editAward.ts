@@ -1,7 +1,8 @@
-export const editAward = async (address: string, id: string) => {
+import { IAward } from "../models/award";
+
+export const editAward = async (address: string, id: string ,  latest:IAward) => {
     const Box = require("3box");
     // A line that defines the space as `${address}_awards` maybe needed
-    const latest = await box.public.get(id);
     latest.version = latest.version + 0.1;
     latest.updates.unshift(`${id}_v${latest.version}`);
     latest.updated = Date.now();

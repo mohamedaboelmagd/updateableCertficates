@@ -1,7 +1,8 @@
-export const editBadge = async (address: string, id: string) => {
+import { IBadge } from "../models/badge";
+
+export const editBadge = async (address: string, id: string, latest:IBadge) => {
   const Box = require("3box"); 
   // A line that defines the space as `${address}_badges` maybe needed
-  const latest = await box.public.get(id);
   latest.version = latest.version + 0.1;
   latest.updates.unshift(`${id}_v${latest.version}`);
   latest.updated = Date.now();

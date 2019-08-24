@@ -7,7 +7,7 @@ export interface IBadge
     version:number
     orgId:string
     updates:string[]
-    awards:string[]
+    awards?:string[]
     created:number
     updated?:number
 

@@ -32,8 +32,8 @@ for(const item of awards){
  
 
     const awardsSpace = await Box.openSpace(`${address}_awards`)
-    await awardsSpace.public.set(awardKeys, JSON.stringify(awardObjects))
-    await awardsSpace.public.set(awardArchiveKeys, JSON.stringify(awardArchiveObjects))
+    await awardsSpace.public.setMultiple(awardKeys, JSON.stringify(awardObjects))
+    await awardsSpace.public.setMultiple(awardArchiveKeys, JSON.stringify(awardArchiveObjects))
 
     const badgesSpace =  await Box.openSpace(`${address}_badges`)
     const badge = await badgesSpace.public.get(badgeId)
