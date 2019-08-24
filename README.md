@@ -34,7 +34,11 @@
 
 ## Main functions
 
-### Add MetaMask
+## Add Metamask siging Explained
+- https://ethereum.stackexchange.com/questions/54715/metamask-verification-on-a-server-with-web3-personal-sign
+
+
+### Add MetaMask explained
 - https://docs.3box.io/build/web-apps/auth/3box
 
 ### Add Function explained
