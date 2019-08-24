@@ -79,3 +79,5 @@
 -	Claim badge / certificate page + actions
 -	Add multiple users in org support
 -   Resend email
+-   Expiration date
+-   Add recipient privacy for email
