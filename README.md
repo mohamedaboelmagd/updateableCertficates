@@ -4,8 +4,7 @@
 ## Technology
 - Metamask
 - 3Box
-- Angular & Ngrx
-- Google Cloud Run
+- Angular
 
 ## Pages
 -   Setup metamask

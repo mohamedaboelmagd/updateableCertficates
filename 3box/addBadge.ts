@@ -1,6 +1,6 @@
 
 
-export  const defineBadge = async(address,name,description,photo)=>{
+export  const addBadge = async(address,name,description,photo)=>{
     const uuid = require('uuid/v4');
     const Box = require('3box')
 
@@ -16,21 +16,16 @@ export  const defineBadge = async(address,name,description,photo)=>{
 
     }
 
-
+    // update badges space
     const badgesSpace = await Box.openSpace(`${address}_badges`)
     await badgesSpace.public.set(id, JSON.stringify(object))
     await badgesSpace.public.set(object.updates[0], JSON.stringify(object))
 
-    return {id , object}
-
-}
-
-export const addBadgeToProfile = async(address,id) =>{
-
-    const Box = require('3box')
-
-    const profile = await Box.getProfile(address)
+    // update profile 
+    const profile = await Box.getProfile(address) 
     const badges = profile.badges || []
     profile.public.set('badges',badges.push(id))
 
-} 
+    return {id , object}
+
+}

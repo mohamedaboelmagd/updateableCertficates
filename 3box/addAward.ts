@@ -1,5 +1,5 @@
 
-export const defineAwards = async(address:string,badgeId, awards:{name,note}[]) =>{
+export const addAwards = async(address:string,badgeId, awards:{name,note}[]) =>{
 
     
     const uuid = require('uuid/v4');
