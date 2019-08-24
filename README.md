@@ -58,7 +58,7 @@
 -   Paginate on the version controlled items
 
 ### Send Emails REST
--   Check that the item is signed by the public key
+-   Check that the item is signed by the private key
 
 ### Highlights
 -   Free
