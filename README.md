@@ -65,21 +65,17 @@
 -   Free
 -   Decentralized <3 IPFS
 -   No Smart contracts
+-   Regular User isnt required to have a wallet
 -   Fully Transparent
 
 ## Plus
--   notify users in profile
--   notify users using email
--   Sign the email request with the private key
--   Add Public Profile for Org
+-   Notify users using oracles
+-   Add Public Profiles and Wallets
 -   A smart contact to approve the user 
 -   Support for private awards / badges
--	Add signup pages
 -	Add recipient user => the one receiving the certificate
--	Add photos
 -	Add profiles/edit
 -	Be open badges complaint
--	Claim badge / certificate page + actions
 -	Add multiple users in org support
 -   Resend email
 -   Expiration date

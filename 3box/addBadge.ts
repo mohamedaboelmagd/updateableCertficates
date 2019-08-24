@@ -1,6 +1,19 @@
 
-
-export  const addBadge = async(address,name,description,photo)=>{
+/**
+ * Used to create new Badge/Certificate
+ * create the badge object with uuid v4
+ * set the item to ${address}_badges twice 
+ * one under the uuid which will be the pointer for the latest version
+ * the other is for versioning which by default is set to 1.0
+ * Then Adds the item id to the badges in profile so we can fetch it directly later on 
+ *
+ * @param {*} address Ethurem from metamask
+ * @param {*} name
+ * @param {*} description
+ * @param {*} photo
+ * @returns
+ */
+const addBadge = async(address,name,description,photo)=>{
     const uuid = require('uuid/v4');
     const Box = require('3box')
 
