@@ -13,6 +13,7 @@
 -   Edit badge
 -   Upload csv award
 -   Edit award
+-   List awards
 -   List badges
 
 ## Actions
